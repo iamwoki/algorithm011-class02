@@ -1,0 +1,26 @@
+class Solution {
+
+
+    List<List<Integer>> result = new LinkedList();
+    int n;
+    int k;
+
+    public void back(int first, LinkedList<Integer> current) {
+        if (current.size() == k)
+            result.add(new LinkedList(current));
+        for (int i = first; i < n + 1; ++i) {
+            current.add(i);
+            back(i + 1, current);
+            current.removeLast();
+        }
+    }
+
+    public List<List<Integer>> combine(int n, int k) {
+        this.n = n;
+        this.k = k;
+        back(1, new LinkedList<Integer>());
+        return result;
+    }
+
+
+}
